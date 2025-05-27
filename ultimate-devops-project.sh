@@ -55,4 +55,9 @@ mv ./kubectl ~/.local/bin/kubectl
 kubectl version --client
 
 
+#check the version for dowloads
+#docker,kubernetes,terraform
+docker --version
+kubectl version --client
+terraform version
 
