@@ -14,7 +14,7 @@ echo \
 sudo apt-get update
 # Install the Docker packages.
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-#verify:
+#verify:with docker contianer sample .
 sudo docker run hello-world
 
 #step:2
@@ -35,4 +35,24 @@ sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update
 sudo apt-get install terraform
 terraform -help plan
+
+#step:3
+#Kubernetes installation stepup:
+#install latest release
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+#validating 
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+#check with validate:
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+#install kubectl
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+#version
+kubectl version --client
+
+
 
